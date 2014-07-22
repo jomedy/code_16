@@ -32,38 +32,33 @@ public final class R {
         public static final int composer_sun=0x7f020008;
         public static final int composer_thought=0x7f020009;
         public static final int composer_with=0x7f02000a;
-        public static final int del_check=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
-        public static final int ll_camera_assistant_float_bk=0x7f02000d;
-        public static final int pageid=0x7f02000e;
-        public static final int red_add=0x7f02000f;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ll_camera_assistant_float_bk=0x7f02000c;
+        public static final int pageid=0x7f02000d;
+        public static final int red_add=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f080014;
-        public static final int back=0x7f080011;
-        public static final int big_window_layout=0x7f08000f;
-        public static final int close=0x7f080010;
-        public static final int composer_button_music=0x7f080009;
-        public static final int composer_button_people=0x7f080007;
-        public static final int composer_button_photo=0x7f080006;
-        public static final int composer_button_place=0x7f080008;
-        public static final int composer_button_sleep=0x7f08000b;
-        public static final int composer_button_thought=0x7f08000a;
-        public static final int composer_buttons_show_hide_button=0x7f08000c;
-        public static final int composer_buttons_show_hide_button_icon=0x7f08000d;
-        public static final int composer_buttons_wrapper=0x7f080005;
-        public static final int dels=0x7f08000e;
-        public static final int percent=0x7f080013;
-        public static final int relate=0x7f080001;
-        public static final int run_image=0x7f080002;
-        public static final int small_window_layout=0x7f080012;
-        public static final int start_float_window=0x7f080000;
-        public static final int tv_page=0x7f080004;
-        public static final int views=0x7f080003;
+        public static final int action_settings=0x7f080010;
+        public static final int back=0x7f08000d;
+        public static final int big_window_layout=0x7f08000b;
+        public static final int close=0x7f08000c;
+        public static final int composer_button_music=0x7f080006;
+        public static final int composer_button_people=0x7f080004;
+        public static final int composer_button_photo=0x7f080003;
+        public static final int composer_button_place=0x7f080005;
+        public static final int composer_button_sleep=0x7f080008;
+        public static final int composer_button_thought=0x7f080007;
+        public static final int composer_buttons_show_hide_button=0x7f080009;
+        public static final int composer_buttons_show_hide_button_icon=0x7f08000a;
+        public static final int composer_buttons_wrapper=0x7f080002;
+        public static final int percent=0x7f08000f;
+        public static final int relate=0x7f080000;
+        public static final int small_window_layout=0x7f08000e;
+        public static final int start_float_window=0x7f080001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int backup=0x7f030001;
+        public static final int float_window=0x7f030001;
         public static final int float_window_big=0x7f030002;
         public static final int float_window_small=0x7f030003;
     }

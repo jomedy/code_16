@@ -24,9 +24,9 @@ public class MyAnimations{
 		return scale;
 	}
 
-	public static void initOffset(Context context){//由布局文件
-		xOffset		= (int) (10.667 *context.getResources().getDisplayMetrics().density);
-		yOffset		= -(int) (8.667 *context.getResources().getDisplayMetrics().density);
+	public static void initOffset(FloatWindowSmallView floatWindowSmallView){//由布局文件
+		xOffset		= (int) (10.667 *floatWindowSmallView.getResources().getDisplayMetrics().density);
+		yOffset		= -(int) (8.667 *floatWindowSmallView.getResources().getDisplayMetrics().density);
 	}
 	
 	public static Animation getRotateAnimation(float fromDegrees ,float toDegrees,int durationMillis){

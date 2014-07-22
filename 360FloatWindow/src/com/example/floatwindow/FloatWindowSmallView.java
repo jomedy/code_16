@@ -8,6 +8,7 @@ import com.example.floatwindow.MyAnimations;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -87,14 +88,14 @@ public class FloatWindowSmallView extends LinearLayout {
 	public FloatWindowSmallView(Context context) {
 		super(context);
 		windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-		LayoutInflater.from(context).inflate(R.layout.float_window_small, this);
-		View view = findViewById(R.id.small_window_layout);
+		LayoutInflater.from(context).inflate(R.layout.float_window, this);
+		View view = findViewById(R.id.relate);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {
+	public boolean onTouchEvent(MotionEvent event) {		
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			// 手指按下时记录必要数据,纵坐标的值都需要减去状态栏高度
@@ -115,7 +116,8 @@ public class FloatWindowSmallView extends LinearLayout {
 			// 如果手指离开屏幕时，xDownInScreen和xInScreen相等，且yDownInScreen和yInScreen相等，则视为触发了单击事件。
 			if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
 				//openBigWindow();
-				showbutton();
+				
+				initPath();
 			}
 			break;
 		default:
@@ -129,11 +131,11 @@ public class FloatWindowSmallView extends LinearLayout {
 	 * 
 	 * 
 	 */
-	public void showbutton(){
-		//MyAnimations.initOffset(FloatWindowSmallView.this);
-		btn_skin = (ImageButton) findViewById(R.id.composer_button_sleep);
+	public void initPath() {
+		MyAnimations.initOffset(FloatWindowSmallView.this);
+		//btn_skin = (ImageButton) findViewById(R.id.composer_button_sleep);
 		//sp_skin = getSharedPreferences("skin", MODE_PRIVATE);
-		btn_skin.setBackgroundResource(sp_skin.getBoolean("id", true)?R.drawable.composer_sleep:R.drawable.composer_sun);
+		//btn_skin.setBackgroundResource(sp_skin.getBoolean("id", true)?R.drawable.composer_sleep:R.drawable.composer_sun);
 		composerButtonsWrapper = (RelativeLayout) findViewById(R.id.composer_buttons_wrapper);
 		composerButtonsShowHideButton = (RelativeLayout) findViewById(R.id.composer_buttons_show_hide_button);
 		composerButtonsShowHideButtonIcon = (ImageView) findViewById(R.id.composer_buttons_show_hide_button_icon);
@@ -154,7 +156,8 @@ public class FloatWindowSmallView extends LinearLayout {
 				areButtonsShowing = !areButtonsShowing;
 			}
 		});
-	}
+    
+}
 
 	/**
 	 * 将小悬浮窗的参数传入，用于更新小悬浮窗的位置。

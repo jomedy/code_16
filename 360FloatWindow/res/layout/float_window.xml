@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"  android:id="@+id/relate"
-    android:layout_height="fill_parent"
+    android:layout_width="200dip"  android:id="@+id/relate"
+    android:layout_height="200dip"
     android:background="#FFFFFF" >
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <ImageView
-            android:id="@+id/run_image"
-            android:layout_width="1280dip"
-            android:layout_height="fill_parent"
-            android:scaleType="matrix"/>
-    </LinearLayout>
-    
-    <com.example.floatwindow.ScrollLayout
-        android:id="@+id/views"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="40dip" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true" 
-        android:layout_margin="20dip">
-        <TextView
-            android:id="@+id/tv_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="1"    android:gravity="center"    android:textColor="#ffffff"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/pageid" />
-    </RelativeLayout>
     <RelativeLayout
             android:id="@+id/composer_buttons_wrapper"
             android:layout_width="fill_parent"
@@ -99,7 +67,7 @@
                 android:background="@drawable/composer_thought"
                 android:visibility="gone" />
 
-           <ImageButton
+            <ImageButton
                 android:id="@+id/composer_button_sleep"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,25 +77,23 @@
                 android:layout_marginRight="144dp"
                 android:background="@drawable/composer_sleep"
                 android:visibility="gone" />
-       </RelativeLayout>
+
+     </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/composer_buttons_show_hide_button"
             android:layout_width="60dp"
             android:layout_height="57.33333333333333dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentRight="true" 
             android:background="@drawable/composer_button" >
+        
 
-            <ImageView
-                android:id="@+id/composer_buttons_show_hide_button_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/composer_icn_plus" />
+        <ImageView
+            android:id="@+id/composer_buttons_show_hide_button_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/composer_icn_plus" />
         </RelativeLayout>
-    <ImageView android:id="@+id/dels"   android:layout_height="wrap_content"    android:layout_width="wrap_content"
-        android:background="@drawable/del_check"    android:visibility="gone"
-        android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
-    
-    </RelativeLayout>
+</RelativeLayout>

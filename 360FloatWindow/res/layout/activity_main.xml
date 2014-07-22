@@ -1,8 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    android:id="@+id/relate"
+    android:background="#FFFFFF" >
+    
 
     <Button
         android:id="@+id/start_float_window"
@@ -12,6 +16,5 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="180dp"
         android:text="悬浮窗" />
- 
     
 </RelativeLayout>

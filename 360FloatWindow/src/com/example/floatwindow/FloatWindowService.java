@@ -102,7 +102,8 @@ public class FloatWindowService extends Service {
         List<RunningTaskInfo> tasks = am.getRunningTasks(1);
         ComponentName topActivity = tasks.get(0).topActivity;
         ComponentName cn = am.getRunningTasks(2).get(0).topActivity;
-        Log.i("-----name-------", cn.getPackageName());
+        //Log.i("-----name-------", cn.getPackageName());
+        
         // TODO: 接入助手接口
         int type = TYPE_GAME;
 
@@ -132,7 +133,8 @@ public class FloatWindowService extends Service {
         
 
         editor.putInt(topActivity.getPackageName(), type);
-        return topActivity.getPackageName().equals("com.sina.weibo");
+        return topActivity.getPackageName().equals("sh.lilith.dgame.s37wan")||
+        		topActivity.getPackageName().equals("com.sina.weibo");
     }
 
 	/**
