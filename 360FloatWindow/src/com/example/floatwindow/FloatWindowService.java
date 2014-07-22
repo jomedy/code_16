@@ -11,18 +11,34 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class FloatWindowService extends Service {
 
-	/**
+	private static final int TYPE_GAME = 0;
+
+    private static final int TYPE_UNKNOWN = 0;
+
+    /**
 	 * 用于在线程中创建或移除悬浮窗。
 	 */
-	private Handler handler = new Handler();
+	private Handler handler = new Handler() {
+	    @Override
+        public void handleMessage(Message msg) {
+	        switch (msg.what) {
+
+	        }
+	    }
+	};
 
 	/**
 	 * 定时器，定时进行检测当前应该创建还是移除悬浮窗。
@@ -87,6 +103,35 @@ public class FloatWindowService extends Service {
         ComponentName topActivity = tasks.get(0).topActivity;
         ComponentName cn = am.getRunningTasks(2).get(0).topActivity;
         Log.i("-----name-------", cn.getPackageName());
+        // TODO: 接入助手接口
+        int type = TYPE_GAME;
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp.getInt(topActivity.getPackageName(), TYPE_UNKNOWN);
+        Editor editor = sp.edit();
+        
+        AsyncTask<Void, Integer, Void> task = new AsyncTask<Void, Integer, Void>() {
+            
+            @Override
+            protected void onProgressUpdate(Integer... progress) {
+
+            }
+
+            @Override
+            protected Void doInBackground(Void... pearams) {
+                // TODO Auto-generated method stub
+                publishProgress(null);
+                return null;
+            }
+            
+            @Override
+            protected void onPostExecute(Void result) {
+                handler.sendEmptyMessage(TRIM_MEMORY_BACKGROUND);
+            }
+        };
+        
+
+        editor.putInt(topActivity.getPackageName(), type);
         return topActivity.getPackageName().equals("com.sina.weibo");
     }
 
