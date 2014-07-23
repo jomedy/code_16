@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import com.example.alramclock.AlarmMainActivity;
+
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -18,6 +20,11 @@ public class MyWindowManager {
 	 * 小悬浮窗View的实例
 	 */
 	private static FloatWindowSmallView smallWindow;
+	
+	/**
+	 * 闹钟View的实例
+	 */
+	private static AlarmMainActivity alarmWindow;
 
 //	/**
 //	 * 大悬浮窗View的实例
@@ -67,6 +74,35 @@ public class MyWindowManager {
 			windowManager.addView(smallWindow, smallWindowParams);
 		}
 	}
+	
+//	/**
+//	 * 创建闹钟。初始位置为屏幕的右部中间位置。
+//	 * 
+//	 * @param context
+//	 *            必须为应用程序的Context.
+//	 */
+//	public static void createAlarmWindow(Context context) {
+//		WindowManager windowManager = getWindowManager(context);
+//		int screenWidth = windowManager.getDefaultDisplay().getWidth();
+//		int screenHeight = windowManager.getDefaultDisplay().getHeight();
+//		if (alarmWindow == null) {
+//			alarmWindow = new AlarmMainActivity();
+//			if (smallWindowParams == null) {
+//				smallWindowParams = new LayoutParams();
+//				smallWindowParams.type = LayoutParams.TYPE_PHONE;
+//				smallWindowParams.format = PixelFormat.RGBA_8888;
+//				smallWindowParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL
+//						| LayoutParams.FLAG_NOT_FOCUSABLE;
+//				smallWindowParams.gravity = Gravity.LEFT | Gravity.TOP;
+//				smallWindowParams.width = FloatWindowSmallView.viewWidth;
+//				smallWindowParams.height = FloatWindowSmallView.viewHeight;
+//				smallWindowParams.x = screenWidth;
+//				smallWindowParams.y = screenHeight / 2;
+//			}
+//			alarmWindow.setParams(smallWindowParams);
+//			windowManager.addView(alarmWindow, smallWindowParams);
+//		}
+//	}
 
 	/**
 	 * 将小悬浮窗从屏幕上移除。

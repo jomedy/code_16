@@ -6,6 +6,8 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.GET_TASKS" /> 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     
     <uses-sdk
         android:minSdkVersion="19"
@@ -26,6 +28,17 @@
             </intent-filter>
         </activity>
         <service android:name=".FloatWindowService"></service>
+        
+        <!-- 李雪 -->
+         <!-- android:theme="@android:style/Theme.Dialog"  将activity设置成Dialog形式 -->
+        <activity android:name="com.example.myalarm.AlarmActivity" 
+            android:configChanges="orientation|keyboardHidden"  />
+        
+        <activity android:name="com.example.myalarm.SetAlarmActivity"            
+            android:label="设置闹钟" />
+        <!-- android:process=":remote": 新开一个进程 -->
+        <receiver android:name="com.example.myalarm.AlarmReceiver" />
+        <!-- 李雪 -->
     </application>
 
 </manifest>

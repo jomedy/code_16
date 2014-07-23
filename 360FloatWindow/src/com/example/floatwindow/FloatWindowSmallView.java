@@ -2,8 +2,10 @@ package com.example.floatwindow;
 
 import java.lang.reflect.Field;
 
+import com.example.alramclock.AlarmMainActivity;
 import com.example.floatwindow.R;
 import com.example.floatwindow.MyAnimations;
+import com.example.killprocess.KillProcess;
 
 import android.content.Context;
 import android.content.Intent;
@@ -168,9 +170,15 @@ public class FloatWindowSmallView extends LinearLayout {
 				public void onClick(View arg0) {
 					switch(position){
 					case 0:
+						KillProcess mykill = new KillProcess();
+						mykill.killAll(getContext());
 						Log.i("0", "------0-----");
 						break;
 					case 1:
+//						Intent intent = new Intent();  
+//						intent.setClass(FloatWindowSmallView.this,AlarmMainActivity.class);//前面一个是一个Activity后面一个是要跳转的Activity  
+//						FloatWindowSmallView.this.startActivity(intent);//开始界面的跳转函数  
+//						AlarmMainActivity.this.finish();//关闭显示的Activity 
 						Log.i("1", "------1-----");
 						break;
 					case 2:
