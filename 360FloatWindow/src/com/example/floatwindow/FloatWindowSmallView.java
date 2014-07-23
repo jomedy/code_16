@@ -2,23 +2,23 @@ package com.example.floatwindow;
 
 import java.lang.reflect.Field;
 
-import com.example.floatwindow.MainActivity;
 import com.example.floatwindow.R;
 import com.example.floatwindow.MyAnimations;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class FloatWindowSmallView extends LinearLayout {
 	
@@ -31,12 +31,12 @@ public class FloatWindowSmallView extends LinearLayout {
 	SharedPreferences sp_skin;
 
 	/**
-	 * 记录小悬浮窗的宽度
+	 * 记录悬浮窗的宽度
 	 */
 	public static int viewWidth;
 
 	/**
-	 * 记录小悬浮窗的高度
+	 * 记录悬浮窗的高度
 	 */
 	public static int viewHeight;
 
@@ -46,12 +46,12 @@ public class FloatWindowSmallView extends LinearLayout {
 	 private static int statusBarHeight;
 
 	/**
-	 * 用于更新小悬浮窗的位置
+	 * 用于更新悬浮窗的位置
 	 */
 	private WindowManager windowManager;
 
 	/**
-	 * 小悬浮窗的参数
+	 *悬浮窗的参数
 	 */
 	private WindowManager.LayoutParams mParams;
 
@@ -76,12 +76,12 @@ public class FloatWindowSmallView extends LinearLayout {
 	private float yDownInScreen;
 
 	/**
-	 * 记录手指按下时在小悬浮窗的View上的横坐标的值
+	 * 记录手指按下时在悬浮窗的View上的横坐标的值
 	 */
 	private float xInView;
 
 	/**
-	 * 记录手指按下时在小悬浮窗的View上的纵坐标的值
+	 * 记录手指按下时在悬浮窗的View上的纵坐标的值
 	 */
 	private float yInView;
 
@@ -109,7 +109,7 @@ public class FloatWindowSmallView extends LinearLayout {
 		case MotionEvent.ACTION_MOVE:
 			xInScreen = event.getRawX();
 			yInScreen = event.getRawY() - getStatusBarHeight();
-			// 手指移动的时候更新小悬浮窗的位置
+			// 手指移动的时候更新悬浮窗的位置
 			updateViewPosition();
 			break;
 		case MotionEvent.ACTION_UP:
@@ -156,21 +156,60 @@ public class FloatWindowSmallView extends LinearLayout {
 				areButtonsShowing = !areButtonsShowing;
 			}
 		});
-    
+		
+		//响应各个图标的点击事件
+		for (int i = 0; i < composerButtonsWrapper.getChildCount(); i++) {
+			final int position=i;
+			composerButtonsWrapper.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					switch(position){
+					case 0:
+						Log.i("0", "------0-----");
+						break;
+					case 1:
+						Log.i("1", "------1-----");
+						break;
+					case 2:
+						Log.i("2", "------2----");
+						break;
+					case 3:
+						Log.i("3", "------3----");
+						break;
+					case 4:
+						Log.i("4", "------4-----");
+						break;
+					case 5:
+						Log.i("5", "------5-----");
+						break;					
+					}
+//					if(position==5){
+//						sp_skin.edit().putBoolean("id", !sp_skin.getBoolean("id", true)).commit();
+//						btn_skin.setBackgroundResource(sp_skin.getBoolean("id", true)?R.drawable.composer_sleep:R.drawable.composer_sun);
+//						//Toast.makeText(MiLaucherActivity.this,!sp_skin.getBoolean("id", true)? "已开启夜间模式":"夜间模式已关闭", 3000).show();
+//					}
+//					else{
+//						Intent intent = new Intent(FloatWindowSmallView.this, classes[position]);
+//						startActivity(intent);
+//						overridePendingTransition(R.anim.anim_fromright_toup6, R.anim.anim_down_toleft6);
+//					}
+				}
+			});
+		}    
 }
 
 	/**
-	 * 将小悬浮窗的参数传入，用于更新小悬浮窗的位置。
+	 * 将悬浮窗的参数传入，用于更新悬浮窗的位置。
 	 * 
 	 * @param params
-	 *            小悬浮窗的参数
+	 *            悬浮窗的参数
 	 */
 	public void setParams(WindowManager.LayoutParams params) {
 		mParams = params;
 	}
 
 	/**
-	 * 更新小悬浮窗在屏幕中的位置。
+	 * 更新悬浮窗在屏幕中的位置。
 	 */
 	private void updateViewPosition() {
 		mParams.x = (int) (xInScreen - xInView);
@@ -178,13 +217,13 @@ public class FloatWindowSmallView extends LinearLayout {
 		windowManager.updateViewLayout(this, mParams);
 	}
 
-	/**
-	 * 打开大悬浮窗，同时关闭小悬浮窗。
-	 */
-	private void openBigWindow() {
-		MyWindowManager.createBigWindow(getContext());
-		MyWindowManager.removeSmallWindow(getContext());
-	}
+//	/**
+//	 * 打开大悬浮窗，同时关闭悬浮窗。
+//	 */
+//	private void openBigWindow() {
+//		MyWindowManager.createBigWindow(getContext());
+//		MyWindowManager.removeSmallWindow(getContext());
+//	}
 
 	/**
 	 * 用于获取状态栏的高度。

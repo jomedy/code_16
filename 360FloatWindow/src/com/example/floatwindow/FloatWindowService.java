@@ -72,7 +72,7 @@ public class FloatWindowService extends Service {
 
 		@Override
 		public void run() {
-			// 当前界面是N应用，且没有悬浮窗显示，则创建悬浮窗。
+			// 当前界面是应用，且没有悬浮窗显示，则创建悬浮窗。
 			if (isApp() && !MyWindowManager.isWindowShowing()) {
 				handler.post(new Runnable() {
 					@Override
@@ -87,7 +87,6 @@ public class FloatWindowService extends Service {
 					@Override
 					public void run() {
 						MyWindowManager.removeSmallWindow(getApplicationContext());
-						MyWindowManager.removeBigWindow(getApplicationContext());
 					}
 				});
 			}
