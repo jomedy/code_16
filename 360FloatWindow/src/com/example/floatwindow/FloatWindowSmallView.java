@@ -92,10 +92,13 @@ public class FloatWindowSmallView extends LinearLayout {
 		View view = findViewById(R.id.relate);
 		viewWidth = view.getLayoutParams().width;
 		viewHeight = view.getLayoutParams().height;
+		
+		initPath();
 	}
 
 	@Override
-	public boolean onTouchEvent(MotionEvent event) {		
+	public boolean onTouchEvent(MotionEvent event) {
+
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			// 手指按下时记录必要数据,纵坐标的值都需要减去状态栏高度
@@ -117,13 +120,13 @@ public class FloatWindowSmallView extends LinearLayout {
 			if (xDownInScreen == xInScreen && yDownInScreen == yInScreen) {
 				//openBigWindow();
 				
-				initPath();
+				//initPath();
 			}
 			break;
 		default:
 			break;
 		}
-		return true;
+		return false;
 	}
 	
 	/**

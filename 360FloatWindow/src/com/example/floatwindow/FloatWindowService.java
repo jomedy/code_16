@@ -34,8 +34,7 @@ public class FloatWindowService extends Service {
 	private Handler handler = new Handler() {
 	    @Override
         public void handleMessage(Message msg) {
-	        switch (msg.what) {
-
+	        switch (msg.what) {    
 	        }
 	    }
 	};
@@ -51,29 +50,23 @@ public class FloatWindowService extends Service {
 	}
 
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		// 开启定时器，每隔0.5秒刷新一次
-		if (timer == null) {
-			timer = new Timer();
-			timer.scheduleAtFixedRate(new RefreshTask(), 0, 500);
-		}
+	public int onStartCommand(Intent intent, int flags, int startId) {		
+		handler.post(thread);
 		return super.onStartCommand(intent, flags, startId);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		// Service被终止的同时也停止定时器继续运行
+		// Service被终止的同时也停止定时器
 		timer.cancel();
 		timer = null;
 	}
 
-	class RefreshTask extends TimerTask {
-
-		@Override
-		public void run() {
+	Runnable thread = new Runnable(){
+		public void run(){
 			// 当前界面是应用，且没有悬浮窗显示，则创建悬浮窗。
-			if (isApp() && !MyWindowManager.isWindowShowing()) {
+			if (isGameApp() && !MyWindowManager.isWindowShowing()) {
 				handler.post(new Runnable() {
 					@Override
 					public void run() {
@@ -82,7 +75,7 @@ public class FloatWindowService extends Service {
 				});
 			}
 			// 当前是桌面，且有悬浮窗显示，则移除悬浮窗。
-			else if (!isApp() && MyWindowManager.isWindowShowing()) {
+			else if (!isGameApp() && MyWindowManager.isWindowShowing()) {
 				handler.post(new Runnable() {
 					@Override
 					public void run() {
@@ -90,18 +83,21 @@ public class FloatWindowService extends Service {
 					}
 				});
 			}
+			
+			handler.postDelayed(thread, 500);
 		}
-	}
+	};
 	
 	/**
-     *判断当前界面程序，是否为应用
+     *判断当前界面程序，是否为游戏应用
      */
-    public boolean isApp() {
+    public boolean isGameApp() {
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningTaskInfo> tasks = am.getRunningTasks(1);
         ComponentName topActivity = tasks.get(0).topActivity;
-        ComponentName cn = am.getRunningTasks(2).get(0).topActivity;
-        //Log.i("-----name-------", cn.getPackageName());
+//        ComponentName cn = am.getRunningTasks(2).get(0).topActivity;
+//        Log.i("-----name-------", cn.getPackageName());
+//        Log.i("-----name-------", getRunningPackageName());
         
         // TODO: 接入助手接口
         int type = TYPE_GAME;
@@ -135,22 +131,32 @@ public class FloatWindowService extends Service {
         return topActivity.getPackageName().equals("sh.lilith.dgame.s37wan")||
         		topActivity.getPackageName().equals("com.sina.weibo");
     }
+    
+    /**
+     *判断当前界面程序，是否为应用
+     */
+    public String getRunningPackageName() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ComponentName cn = am.getRunningTasks(2).get(0).topActivity;
+        
+        return cn.getPackageName();
+    }
 
-	/**
-	 * 获得属于桌面的应用的应用包名称
-	 * 
-	 * @return 返回包含所有包名的字符串列表
-	 */
-	private List<String> getHomes() {
-		List<String> names = new ArrayList<String>();
-		PackageManager packageManager = this.getPackageManager();
-		Intent intent = new Intent(Intent.ACTION_MAIN);
-		intent.addCategory(Intent.CATEGORY_HOME);
-		List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent,
-				PackageManager.MATCH_DEFAULT_ONLY);
-		for (ResolveInfo ri : resolveInfo) {
-			names.add(ri.activityInfo.packageName);
-		}
-		return names;
-	}
+//	/**
+//	 * 获得属于桌面的应用的应用包名称
+//	 * 
+//	 * @return 返回包含所有包名的字符串列表
+//	 */
+//	private List<String> getHomes() {
+//		List<String> names = new ArrayList<String>();
+//		PackageManager packageManager = this.getPackageManager();
+//		Intent intent = new Intent(Intent.ACTION_MAIN);
+//		intent.addCategory(Intent.CATEGORY_HOME);
+//		List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent,
+//				PackageManager.MATCH_DEFAULT_ONLY);
+//		for (ResolveInfo ri : resolveInfo) {
+//			names.add(ri.activityInfo.packageName);
+//		}
+//		return names;
+//	}
 }
