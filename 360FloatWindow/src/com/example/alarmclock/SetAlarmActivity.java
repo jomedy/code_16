@@ -22,6 +22,7 @@ public class SetAlarmActivity extends Activity {
 	private Button btn_setalarm=null;
 	private AlarmManager alarmManager = null;
 	private Switch switch_vibrate=null;
+	private Switch switch_ring=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -37,41 +38,38 @@ public class SetAlarmActivity extends Activity {
 		numberPicker2.setMaxValue(59);
 		numberPicker2.setMinValue(0);
 		numberPicker2.setValue(0);
-		
-		//TimePicker 控件设置
-		//tp=(TimePicker)findViewById(R.id.timePicker1);
-		//tp.setIs24HourView(true);
-		//tp.setCurrentHour(0);
-		//tp.setCurrentMinute(30);
-		
+
+		//Switch控件设置
 		switch_vibrate=(Switch)findViewById(R.id.switch_vibrate);
-		switch_vibrate.setChecked(true);
+		switch_vibrate.setChecked(true);		
+		switch_ring=(Switch)findViewById(R.id.switch_ring);
+		switch_ring.setChecked(true);
+		
 		
 		btn_setalarm=(Button)findViewById(R.id.btn_setalarm);
 		btn_setalarm.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {				
-				//int hour=tp.getCurrentHour();  
-				//int minute=tp.getCurrentMinute();
+			public void onClick(View v) {		
+					        	
+	        /*
 				int hour=numberPicker1.getValue();
 				int minute=numberPicker2.getValue();
 				long timemillis=60*1000*(hour*60+minute);
-				alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-				
-				//Intent intent = new Intent(SetAlarmActivity.this,
-				//		AlarmReceiver.class); // 创建Intent对象
-				//intent.setAction("com.alarm.action_alarm_on");
-				//PendingIntent pi = PendingIntent.getBroadcast(
-				//		SetAlarmActivity.this, 0, intent, 0); // 创建PendingIntent
+				alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);			
 				
 				Intent intent = new Intent(SetAlarmActivity.this,AlarmActivity.class);
 				intent.setAction("com.alarm.action_alarm_on");
-				PendingIntent pi=PendingIntent.getActivity(SetAlarmActivity.this, 0, intent, 0);
-				
+				PendingIntent pi=PendingIntent.getActivity(SetAlarmActivity.this, 0, intent, 0);				
 				
 				alarmManager.set(AlarmManager.RTC_WAKEUP,
 						System.currentTimeMillis()+timemillis, pi);
 				Toast.makeText(SetAlarmActivity.this,"定时提醒设置成功！",
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_LONG).show();*/
+				Bundle bundle = new  Bundle();
+	        	bundle.putInt("hour",numberPicker1.getValue());
+	        	bundle.putInt("minute",numberPicker2.getValue());
+	        	bundle.putBoolean("set_vibrator",switch_vibrate.isChecked());
+	        	bundle.putBoolean("set_ring",switch_ring.isChecked());
+	        	SetAlarmActivity.this.setResult(RESULT_OK, SetAlarmActivity.this.getIntent().putExtras(bundle));
 				SetAlarmActivity.this.finish();
 			}
 		});
