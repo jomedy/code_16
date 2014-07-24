@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.example.alramclock.AlarmMainActivity;
+import com.example.alarmclock.AlarmMainActivity;
 
 import android.app.ActivityManager;
 import android.content.Context;

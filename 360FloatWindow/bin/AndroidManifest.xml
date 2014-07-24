@@ -31,13 +31,13 @@
         
         <!-- 李雪 -->
          <!-- android:theme="@android:style/Theme.Dialog"  将activity设置成Dialog形式 -->
-        <activity android:name="com.example.myalarm.AlarmActivity" 
+        <activity android:name="com.example.alarmclock.AlarmMainActivity" 
             android:configChanges="orientation|keyboardHidden"  />
         
-        <activity android:name="com.example.myalarm.SetAlarmActivity"            
+        <activity android:name="com.example.alarmclock.SetAlarmActivity"            
             android:label="设置闹钟" />
         <!-- android:process=":remote": 新开一个进程 -->
-        <receiver android:name="com.example.myalarm.AlarmReceiver" />
+        <receiver android:name="com.example.alarmclock.AlarmReceiver" />
         <!-- 李雪 -->
     </application>
 

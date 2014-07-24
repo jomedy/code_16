@@ -1,4 +1,4 @@
-package com.example.alramclock;
+package com.example.alarmclock;
 
 import android.os.Bundle;
 import android.app.Activity;

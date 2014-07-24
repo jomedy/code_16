@@ -1,4 +1,4 @@
-package com.example.alramclock;
+package com.example.alarmclock;
 
 import com.example.floatwindow.R;
 

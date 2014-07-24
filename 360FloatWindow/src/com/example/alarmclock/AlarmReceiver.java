@@ -1,5 +1,5 @@
 //Œﬁ”√
-package com.example.alramclock;
+package com.example.alarmclock;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
